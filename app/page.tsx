@@ -1,111 +1,139 @@
 "use client";
-import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { UserButton, useUser } from "@clerk/nextjs";
+import  BentoGrid  from "./_components/FeatureBentoGrid";
 import { motion } from "motion/react";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
-
-// Dynamically import BentoGrid with SSR disabled to avoid hydration mismatch
-const BentoGrid = dynamic(() => import("./_components/FeatureBentoGrid"), {
-  ssr: false,
-});
+import Image from "next/image";
 
 export default function HeroSectionOne() {
-  // Ensure all client-only code runs after mount to avoid hydration mismatch
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-blue-50 via-white to-pink-50 dark:from-neutral-900 dark:via-black dark:to-neutral-900">
+    <div className="relative flex flex-col items-center justify-center">
       <Navbar />
-      {/* Decorative vertical and horizontal lines */}
-      <div className="pointer-events-none absolute inset-0 z-0">
-        <div className="absolute inset-y-0 left-0 w-px bg-neutral-200/80 dark:bg-neutral-800/80">
-          <div className="absolute top-0 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
-        </div>
-        <div className="absolute inset-y-0 right-0 w-px bg-neutral-200/80 dark:bg-neutral-800/80">
-          <div className="absolute h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
-        </div>
-        <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
-          <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-        </div>
+      <div className="absolute inset-y-0 left-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
+        <div className="absolute top-0 h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
       </div>
-      <main className="relative z-10 w-full max-w-5xl px-6 py-16 md:py-28 flex flex-col items-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="mb-6 text-center font-extrabold text-3xl md:text-5xl lg:text-7xl text-slate-800 dark:text-slate-200 tracking-tight leading-tight"
-        >
-          <span className="bg-gradient-to-r from-blue-500 via-pink-500 to-purple-500 bg-clip-text text-transparent">
-            AI Medical Consultation
-          </span>
-          <br />
-          <span className="block text-lg md:text-2xl font-medium text-slate-600 dark:text-slate-400 mt-2">
-            Your 24/7 Voice-Powered Healthcare Assistant
-          </span>
-        </motion.h1>
+      <div className="absolute inset-y-0 right-0 h-full w-px bg-neutral-200/80 dark:bg-neutral-800/80">
+        <div className="absolute h-40 w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent" />
+      </div>
+      <div className="absolute inset-x-0 bottom-0 h-px w-full bg-neutral-200/80 dark:bg-neutral-800/80">
+        <div className="absolute mx-auto h-px w-40 bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
+      </div>
+      <div className="px-4 py-10 md:py-20">
+        <h1 className="relative z-10 mx-auto max-w-4xl text-center text-2xl font-bold text-slate-700 md:text-4xl lg:text-7xl dark:text-slate-300">
+          {"Transform Healthcare with AI Medical Voice Agents"
+            .split(" ")
+            .map((word, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, filter: "blur(4px)", y: 10 }}
+                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
+                transition={{
+                  duration: 0.3,
+                  delay: index * 0.1,
+                  ease: "easeInOut",
+                }}
+                className="mr-2 inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
+        </h1>
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mb-8 max-w-2xl text-center text-lg md:text-xl text-neutral-700 dark:text-neutral-300"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.3,
+            delay: 0.8,
+          }}
+          className="relative z-10   py-4 text-center text-lg font-normal text-neutral-600 dark:text-neutral-400"
         >
-          Instantly connect with an AI medical agent for accurate, confidential, and natural voice consultations. 
-          Automate appointment scheduling, symptom triage, and follow-up care—anytime, anywhere.
+          Deliver instant, accurate medical assistance throught natural voice
+          conversations Automate appointment scheduling , symptom triage , and
+          follow-up care-24/7{" "}
         </motion.p>
+        <Link href={'/sign-in'}>
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-col sm:flex-row gap-4 mb-12 items-center justify-center"
+          initial={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.3,
+            delay: 1,
+          }}
+          className="relative z-10 mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <Link href="/sign-in" passHref>
-            <button className="w-56 sm:w-60 rounded-lg bg-gradient-to-r from-blue-600 to-pink-500 px-8 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-blue-700 hover:to-pink-600 dark:bg-white dark:text-black dark:hover:bg-gray-200">
-              Get Started
-            </button>
-          </Link>
-          <Link href="#features" passHref>
-            <button className="w-56 sm:w-60 rounded-lg border border-blue-500 px-8 py-3 font-semibold text-blue-600 bg-white shadow transition-all duration-300 hover:bg-blue-50 dark:bg-black dark:text-blue-400 dark:border-blue-400 dark:hover:bg-neutral-900">
-              Learn More
-            </button>
-          </Link>
+          <button className="w-60 transform rounded-lg bg-gradient-to-r from-blue-600 to-cyan-400 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-cyan-500 dark:bg-gradient-to-r dark:from-blue-400 dark:to-cyan-300 dark:text-black dark:hover:from-blue-500 dark:hover:to-cyan-400">
+            Get Started
+          </button>
         </motion.div>
+        </Link>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="w-full rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900 mb-16"
+          initial={{
+            opacity: 0,
+            y: 10,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+          }}
+          transition={{
+            duration: 0.3,
+            delay: 1.2,
+          }}
+          className="relative z-10 mt-32 rounded-3xl border border-neutral-200 bg-neutral-100 p-4 shadow-md dark:border-neutral-800 dark:bg-neutral-900 w-[75%] mx-auto"
         >
           <div className="w-full overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700">
             <img
-              src="https://media.gettyimages.com/id/1442319694/vector/robot-pushing-wheelchair.jpg?s=612x612&w=0&k=20&c=0oJCcBsKrh2aVDcr-EeeINBKUMnB6mcpeM0Do-m9kCQ="
-              alt="AI Medical Consultation Preview"
+              src="https://cdn.pixabay.com/photo/2019/05/07/22/12/doctor-4187242_1280.jpg"
+              alt="Landing page preview"
               className="aspect-[16/9] h-auto w-full object-cover"
-              height={320}
-              width={640}
+              height={1000}
+              width={1000}
             />
           </div>
         </motion.div>
-        {/* Only render BentoGrid on client to avoid hydration mismatch */}
-        <section id="features" className="w-full">
-          {mounted && <BentoGrid />}
-        </section>
-      </main>
+      </div>
+      <BentoGrid />
     </div>
   );
 }
 
 const Navbar = () => {
+  const user = useUser();
   return (
-    <nav className="w-full flex items-center justify-between border-b border-neutral-200 dark:border-neutral-800 px-6 py-5 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm mb-4">
-      <div className="flex items-center gap-3">
-        <div className="size-8 rounded-full bg-gradient-to-br from-blue-500 to-pink-500 shadow" />
-        <span className="text-lg font-bold tracking-tight text-slate-800 dark:text-slate-100">
-          AI Consultation
-        </span>
+    <nav className="flex w-full items-center justify-between border-t border-b border-neutral-200 px-4 py-4 dark:border-neutral-800">
+      <div className="flex items-center gap-2">
+        {/* <div className="size-7 flex items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-blue-500">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="10" cy="10" r="9" stroke="white" strokeWidth="2" />
+            <path d="M10 5V15" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M5 10H15" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+          </svg>
+        </div> */}
+        <Image src="/logo.svg" alt="Logo" width={60} height={39} />
+        <h1 className="text-base font-bold md:text-2xl">Medical Consultation</h1>
       </div>
+     {user ? 
+      <div className="flex items-center gap-4">
+        <UserButton/>
+        <Link href={"/dashboard"}>
+        <Button className="bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:from-blue-700 hover:to-cyan-500 dark:from-blue-400 dark:to-cyan-300 dark:text-black dark:hover:from-blue-500 dark:hover:to-cyan-400">
+          Dashboard
+        </Button>
+        </Link>
+      </div>:<Link href={"/sign-in"}>
+      <button className="w-24 transform rounded-lg bg-gradient-to-r from-blue-600 to-cyan-400 px-6 py-2 font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:from-blue-700 hover:to-cyan-500 md:w-32 dark:from-blue-400 dark:to-cyan-300 dark:text-black dark:hover:from-blue-500 dark:hover:to-cyan-400">
+        Login
+      </button>
+      </Link>} 
     </nav>
   );
 };
