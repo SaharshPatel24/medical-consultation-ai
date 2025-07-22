@@ -1,10 +1,12 @@
 import React from 'react'
 import HistoryList from '../_components/HistoryList'
 
-const page = () => {
+function History() {
   return (
-   <HistoryList/>
+    <div>
+      <HistoryList />
+    </div>
   )
 }
 
-export default page
+export default History

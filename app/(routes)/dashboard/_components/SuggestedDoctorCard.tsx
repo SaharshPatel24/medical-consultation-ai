@@ -1,22 +1,18 @@
 import React from 'react'
-import { DoctorAgent } from './DoctorAgent'
+import { doctorAgent } from './DoctorAgentCard'
 import Image from 'next/image'
-type props={
-    doctorAgent: DoctorAgent,
+
+type props = {
+    doctorAgent:doctorAgent,
     setSelectedDoctor:any,
-    selectedDoctor:any
+    selectedDoctor:doctorAgent | null
 }
-const SuggestedDoctorCard = ({ doctorAgent , setSelectedDoctor,selectedDoctor}: props) => {
+function SuggestedDoctorCard({doctorAgent , setSelectedDoctor , selectedDoctor}:props) {
   return (
-    <div className={`flex flex-col items-center border-2 rounded-2xl shadow p-5
-    hover:border-blue-500 cursor-pointer ${
-      selectedDoctor && selectedDoctor.id === doctorAgent.id ? 'border-blue-500' : ''
-    }`}
-  onClick={() => setSelectedDoctor(doctorAgent)}
->
-        <Image src={doctorAgent.image} alt={doctorAgent.specialist} width={70} height={70} className='w-[50px] h-[50px] rounded-4xl'/>
-      <h2 className='font-bold'>{doctorAgent.specialist}</h2>
-      <p className='text-xs text-center'>{doctorAgent.description}</p>
+    <div className={`flex flex-col items-center border rounded-2xl hover:border-blue-500 cursor-pointer shadow p-5 ${selectedDoctor?.id==doctorAgent.id&&'border-blue-500'}`} onClick={()=> setSelectedDoctor(doctorAgent)}>
+      <Image src={doctorAgent.image} alt = {doctorAgent.specialist}  width={70} height={70} className='w-[50px] h-[50px] rounded-4xl object-cover'/>
+      <h2 className='font-bold text-sm text-center'>{doctorAgent.specialist}</h2>
+      <p className='text-xs text-center line-clamp-2'>{doctorAgent.description}</p>
     </div>
   )
 }
