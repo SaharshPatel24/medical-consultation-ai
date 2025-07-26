@@ -93,9 +93,9 @@ export default function Home() {
           <div className="w-full flex justify-center">
             <div className="w-4/5 max-w-3xl overflow-hidden rounded-xl border border-gray-300 dark:border-gray-700 mx-auto">
               <img
-                src="https://assets.aceternity.com/pro/aceternity-landing.webp"
+                src="https://assets.clevelandclinic.org/transform/LargeFeatureImage/3e9f2415-20c9-45a8-a0ef-4f415008a18a/healthcare-workers-ai-1359494953"
                 alt="AI Medical Consultation Platform Preview"
-                className="aspect-[16/9] h-auto w-full object-cover"
+                className="aspect-[16/9] h-auto w-full object-fill"
                 height={1000}
                 width={1000}
               />

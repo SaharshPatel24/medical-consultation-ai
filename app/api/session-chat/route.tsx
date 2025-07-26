@@ -47,3 +47,11 @@ export async function GET(req:NextRequest) {
     return NextResponse.json(result[0]);
     }
 }
+
+export async function PUT(req:NextRequest) {
+    const {sessionId,notes} = await req.json();
+    const user = await currentUser();
+
+    const result = await db.update(SessionChatTable).set({notes:notes}).where(eq(SessionChatTable.sessionId,sessionId));
+    return NextResponse.json(result);
+}

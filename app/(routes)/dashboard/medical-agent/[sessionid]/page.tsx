@@ -2,7 +2,6 @@
 import React, {useEffect, useState} from 'react'
 import {useParams} from "next/navigation";
 import axios from "axios";
-import {doctorAgent} from "@/app/(routes)/dashboard/_components/DoctorAgentCard";
 import {Circle, PhoneCall, PhoneOff} from "lucide-react";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
@@ -34,6 +33,11 @@ function MedicalVoiceAgent() {
         const result = await axios.get('/api/session-chat?sessionId='+sessionId);
         console.log(result.data);
         setSessionDetail(result.data);
+    }
+
+    const updateNotes = async() => {
+        const result = await axios.put('/api/session-chat',{sessionId:sessionId});
+        console.log(result.data);
     }
 
     const startCall = () => {
@@ -107,6 +111,7 @@ function MedicalVoiceAgent() {
             vapiInstance.stop();
             setCallStarted(false);
             setVapiInstance(null);
+            updateNotes();
         }
     };
 
