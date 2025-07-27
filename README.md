@@ -12,7 +12,7 @@
 
 > **Revolutionize Patient Care with AI Voice Agents** - Deliver instant, accurate medical assistance through natural voice conversations. Automate appointment scheduling, symptom triage, and follow-up care—24/7.
 
-![Application Preview](https://via.placeholder.com/800x400/1e293b/ffffff?text=Medical+Consultation+AI+Preview)
+![Application Preview](/public/preview_image.png)
 
 ## 🌟 Features
 
