@@ -8,7 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { SessionDetail } from "./AddNewSessionDialog";
+import { SessionDetail } from "@/types/medical";
 import { Button } from "@/components/ui/button";
 import moment from 'moment'
 import ViewReportDialog from "./ViewReportDialog";
@@ -45,3 +45,4 @@ function HistoryTable({ historyList }: Props) {
 }
 
 export default HistoryTable;
+

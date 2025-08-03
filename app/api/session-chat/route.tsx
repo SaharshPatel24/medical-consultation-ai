@@ -49,9 +49,23 @@ export async function GET(req:NextRequest) {
 }
 
 export async function PUT(req:NextRequest) {
-    const {sessionId,notes} = await req.json();
+    const {sessionId, notes, conversation, report} = await req.json();
     const user = await currentUser();
 
-    const result = await db.update(SessionChatTable).set({notes:notes}).where(eq(SessionChatTable.sessionId,sessionId));
-    return NextResponse.json(result);
+    try {
+        const updateData: any = {};
+        
+        if (notes !== undefined) updateData.notes = notes;
+        if (conversation !== undefined) updateData.conversation = conversation;
+        if (report !== undefined) updateData.report = report;
+
+        const result = await db.update(SessionChatTable)
+            .set(updateData)
+            .where(eq(SessionChatTable.sessionId, sessionId));
+            
+        return NextResponse.json({ success: true, result });
+    } catch (error) {
+        console.error('Error updating session:', error);
+        return NextResponse.json({ error: 'Failed to update session' }, { status: 500 });
+    }
 }
