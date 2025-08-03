@@ -48,7 +48,6 @@ function AddNewSessionDialog() {
 
     const GetHistoryList = async()=>{
         const result = await axios.get('/api/session-chat?sessionId=all')
-        console.log(result.data);
         setHistoryList(result.data);
     }
 
@@ -65,8 +64,6 @@ function AddNewSessionDialog() {
             const result = await axios.post('/api/suggest-doctors', {
                 notes: note.trim()
             });
-            
-            console.log('API Response:', result.data);
             
             // Handle different possible response formats from the AI
             let doctorsArray: any[] = [];
@@ -159,7 +156,6 @@ function AddNewSessionDialog() {
             });
 
             if (result.data?.sessionId) {
-                console.log('Session created:', result.data.sessionId);
                 router.push('/dashboard/medical-agent/' + result.data.sessionId);
             } else {
                 throw new Error('Failed to create consultation session');

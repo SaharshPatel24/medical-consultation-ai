@@ -6,18 +6,10 @@ import {Circle, PhoneCall, PhoneOff} from "lucide-react";
 import Image from "next/image";
 import {Button} from "@/components/ui/button";
 import Vapi from "@vapi-ai/web";
-import { type SessionDetail} from '@/app/(routes)/dashboard/_components/AddNewSessionDialog'
-
-
-
-type Message = {
-    role: string,
-    text: string,
-
-}
+import { type SessionDetail, type Message } from '@/types/medical'
 
 function MedicalVoiceAgent() {
-    const {sessionId} = useParams()
+    const {sessionid} = useParams()
     const [sessionDetail, setSessionDetail] = useState<SessionDetail>()
     const [callStarted, setCallStarted] = useState(false);
     const [vapiInstance, setVapiInstance] = useState<any>();
@@ -26,18 +18,44 @@ function MedicalVoiceAgent() {
     const [messages, setMessages] = useState<Message[]>([]);
 
     useEffect(() => {
-        sessionId && getSessionDetails();
-    }, [sessionId]);
+       sessionid && getSessionDetails();
+    }, [sessionid]);
 
     const getSessionDetails = async() => {
-        const result = await axios.get('/api/session-chat?sessionId='+sessionId);
-        console.log(result.data);
+        const result = await axios.get('/api/session-chat?sessionId=' + sessionid);
         setSessionDetail(result.data);
     }
 
     const updateNotes = async() => {
-        const result = await axios.put('/api/session-chat',{sessionId:sessionId});
-        console.log(result.data);
+        try {
+            // Save conversation data to database
+            const result = await axios.put('/api/session-chat', {
+                sessionId: sessionid,
+                conversation: messages,
+                notes: sessionDetail?.notes
+            });
+            console.log('Conversation saved:', result.data);
+            
+            // Generate report after saving conversation
+            await generateReport();
+        } catch (error) {
+            console.error('Error updating session:', error);
+        }
+    }
+
+    const generateReport = async() => {
+        try {
+            console.log('Generating report for session:', sessionid);
+            const result = await axios.post('/api/generate-report', {
+                sessionId: sessionid,
+                conversation: messages,
+                doctor: sessionDetail?.selectedDoctor,
+                initialNotes: sessionDetail?.notes
+            });
+            console.log('Report generated:', result.data);
+        } catch (error) {
+            console.error('Error generating report:', error);
+        }
     }
 
     const startCall = () => {
@@ -128,7 +146,7 @@ function MedicalVoiceAgent() {
             {sessionDetail &&
             <div className="flex flex-col items-center mt-10">
                 <Image
-                    src={sessionDetail?.selectedDoctor?.image}
+                    src={sessionDetail?.selectedDoctor?.image || ''}
                     alt={sessionDetail?.selectedDoctor?.specialist}
                     width={120}
                     height={120}

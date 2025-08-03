@@ -22,20 +22,29 @@
 - **📝 Live Transcription** - Real-time speech-to-text with conversation history
 - **🔊 Natural Voice Synthesis** - High-quality AI voices for each specialist
 - **📊 Session Management** - Complete consultation history and session tracking
+- **📋 AI Medical Reports** - Automated generation of comprehensive medical reports from consultations
+- **🏥 Report Viewing** - Professional medical report interface with structured sections
+
+### 📋 Medical Report Generation
+- **Automated Analysis** - AI analyzes conversation transcripts to generate structured medical reports
+- **Comprehensive Sections** - Chief complaint, history, assessment, diagnosis, recommendations, and follow-up
+- **Professional Format** - Color-coded sections for easy reading and medical standard compliance
+- **Persistent Storage** - Reports saved to database and accessible through consultation history
+- **Real-time Generation** - Reports created automatically after consultation completion
 
 ### 🏥 Medical Specialists Available
 | Specialist | Description | Voice | Premium |
 |------------|-------------|-------|---------|
 | 🩺 General Physician | Everyday health concerns and common symptoms | Will | ❌ Free |
-| 👶 Pediatrician | Children's health, from babies to teens | Chris | ✅ Premium |
-| 🌡️ Dermatologist | Skin issues like rashes, acne, or infections | Sarge | ✅ Premium |
-| 🧠 Psychologist | Mental health and emotional well-being | Susan | ✅ Premium |
-| 🥗 Nutritionist | Healthy eating and weight management | Eileen | ✅ Premium |
-| ❤️ Cardiologist | Heart health and blood pressure issues | Charlotte | ✅ Premium |
-| 👂 ENT Specialist | Ear, nose, and throat problems | Ayla | ✅ Premium |
-| 🦴 Orthopedic | Bone, joint, and muscle pain | Aaliyah | ✅ Premium |
-| 🔬 Gynecologist | Women's reproductive and hormonal health | Hudson | ✅ Premium |
-| 🦷 Dentist | Oral hygiene and dental problems | Atlas | ✅ Premium |
+| 👶 Pediatrician | Children's health and developmental concerns | Jenny | ✅ Premium |
+| 🧠 Neurologist | Brain, spine, and nervous system disorders | David | ✅ Premium |
+| 💊 Pharmacist | Medication guidance and drug interactions | Sarah | ❌ Free |
+| 🏃 Sports Medicine | Athletic injuries and performance optimization | Mike | ✅ Premium |
+| 🌿 Nutritionist | Diet planning and nutritional counseling | Emma | ❌ Free |
+| 🧘 Mental Health | Anxiety, depression, and emotional wellness | Lisa | ✅ Premium |
+| 👩 Gynecologist | Women's reproductive health | Dr. Smith | ✅ Premium |
+| 🦴 Orthopedist | Bone, joint, and musculoskeletal issues | Dr. Johnson | ✅ Premium |
+| 👁️ Ophthalmologist | Eye health and vision problems | Dr. Brown | ✅ Premium |
 
 ### 🎨 User Experience
 - **🌓 Dark/Light Mode** - Seamless theme switching
